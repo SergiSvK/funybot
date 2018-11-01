@@ -7,11 +7,12 @@
 const Discord = require("discord.js");
 const mysql = require("mysql");
 const fs = require("fs");
+const dotenv = require("dotenv").config();
 // Archivos
 const config = require("./config.json");
 const botinfo = require("./version.json");
 const errors = require("./bot_utils/errores.js");
-const automensajes = require("../bot_data/automensajes.json");
+// const automensajes = require("./bot_data/automensajes.json");
 // Definir bot y comandos
 const bot = new Discord.Client({ autoReconnect: true });
 bot.commands = new Discord.Collection();
@@ -21,16 +22,20 @@ bot.aliases = new Discord.Collection();
 // MYSQL - Conexión a base de datos
 // ===========================================
 var con = mysql.createConnection({
-  host: "localhost",
-  user: "user",
-  password: "pass",
-  database: "database",
+  host: process.env.MYSQL_HOST || 'database',
+  user: process.env.MYSQL_USER || 'root',
+  port: process.env.MYSQL_PORT || 3306,
+  password: process.env.MYSQL_PASSWORD || '',
+  database: process.env.MYSQL_DATABASE || 'diamond_bot',
 });
 con.connect(err => {
   console.log(`---------------------------------`);
   console.log(` > Cargando base de datos...     `);
   console.log(`---------------------------------`);
-  if(err) throw err;
+  if(err) {
+    console.warn('Error al intentar conectar a la base de datos: ' + err);
+    throw err;
+  }
   console.log("(!) Base de datos conectada!");
   console.log(`---------------------------------`);
   console.log(` `);

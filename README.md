@@ -72,6 +72,9 @@ $ cd diamond-bot
 # Instala las dependencias
 $ npm install
 
+# Renombra el archivo .example.env
+$ mv .example.env .env
+
 # Ejecuta el bot
 $ npm run index
 ```
