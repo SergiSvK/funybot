@@ -11,7 +11,7 @@
     "ffmpeg": "0.0.4",
     "giphy-api": "^1.2.7",
     "https": "^1.0.0",
-    "moment": "^2.22.1",
+    "moment": "^2.29.4",
     "mysql": "^2.15.0",
     "node-code-generator": "^1.0.3",
     "opusscript": "0.0.6",
